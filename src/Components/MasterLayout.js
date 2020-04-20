@@ -7,6 +7,7 @@ const PageWrapper = styled.div`
   background-color: green;
 `;
 
+// Master layer includes header and footer those are common on all pages
 const MasterLayout = props => {
   return (
     <PageWrapper>

@@ -5,7 +5,8 @@ import axios from "axios";
 const FormWrapper = styled.div`
   width: 100%;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
+  margin-top: 2.5rem;
   /* margin-top:5rem; */
 
   input[type="text"] {
@@ -15,22 +16,34 @@ const FormWrapper = styled.div`
     font-size: inherit;
     border: 1px solid #fff;
     background-color: transparent;
-    color: #fff;
+    color: #e5e4e6;
+    font-family: inherit;
+    /* border:none; */
 
     ::placeholder {
-      color: #98e7ff;
+      color: #e5e4e6;
+    }
+
+    :focus {
+      outline: none;
+      box-shadow: 0 0px 5px #b1c244;
     }
   }
   button {
-    padding: 1rem 3rem;
+    padding: 1.1rem 3rem;
     border-radius: 5px;
-    margin-left: 0.5rem;
-    background-color: #5c73f2;
+    margin-left: 0.3rem;
+    font-weight: 700;
+    background-color: #d3e65a;
     font-size: inherit;
-    color: #fff;
+    font-family: inherit;
+    color: #2f2f30;
     border: none;
+    transition: background-color 0.5s ease;
+    /* text-transform: uppercase; */
+
     :hover {
-      background-color: #3e38f2;
+      background-color: #b1c244;
       cursor: pointer;
     }
   }
@@ -39,51 +52,37 @@ const FormWrapper = styled.div`
 const tag = "UserInputForm Component";
 
 class UserInputForm extends React.Component {
-  handleClick = async event => {
-    event.preventDefault();
-
-    const resp = await axios.get(
-      `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://developers.google.com`
-    );
-
-    console.log(resp);
-
-    // axios
-    //   .post("https://gtmetrix.com/api/0.1/test", {
-    //     data: {
-    //       url: "https://ajeetchaulagain.com",
-
-    //     },
-    //     auth: {
-    //       username: "chaulagainajeet@gmail.com",
-    //       password: "f785c52e64671d6bfd5ee0ee38ffad38"
-    //     }
-    //   })
-    //   .then(resp => {
-    //     console.log(resp.status);
-    //   })
-    //   .catch(err => {
-    //     console.log(`error ${err}`);
-    //   });
-
-    console.log("User Input Form - Component");
+  state = {
+    url: "",
+    placeHolderText: "Insert site URL here"
   };
 
+  // handler for button click
+  handleSubmit = event => {
+    event.preventDefault();
+    const url = this.state.url;
+    this.props.onStartTest(url);
+    console.log("UserInputForm - url:", url);
+  };
+
+  // handler for input change
   handleChange = event => {
     event.preventDefault();
-    // console.log(tag, event);
+    this.setState({ url: event.currentTarget.value });
   };
 
   render() {
     return (
       <FormWrapper>
-        <form onSubmit={this.handleClick}>
+        <form onSubmit={this.handleSubmit}>
           <input
             type="text"
             onChange={this.handleChange}
-            placeholder="Insert your site url here"
+            placeholder={this.state.placeHolderText}
+            value={this.state.websiteUrl}
+            onFocus={() => this.setState({ placeHolderText: "" })}
           />
-          <button>Start Testing</button>
+          <button>Start Test</button>
         </form>
       </FormWrapper>
     );

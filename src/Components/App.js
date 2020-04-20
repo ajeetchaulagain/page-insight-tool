@@ -7,43 +7,51 @@ import MasterLayout from "./MasterLayout";
 import UserInputForm from "./UserInputForm";
 import SiteInfoDisplay from "./SiteInfoDisplay";
 import Loading from "./Loading";
+import speedIcon from "../images/speed.png";
 
 // Static Assets
 import "./App.css";
-import heroBackgroundImage from "../images/hero-background.jpg";
 
 const HeroSectionWrapper = styled.div`
-  padding: 12rem 1rem 8rem;
+  padding: 3rem 1rem 5rem;
   color: #fff;
   text-align: center;
-  /* background-image: url(${heroBackgroundImage}); */
+  background-color: #734bec;
+  line-height: 1.8;
 
-  background-color:#0C154A;
+  img {
+    width: 150px;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+  p {
+    font-size: 1.2rem;
+  }
 `;
 
 class App extends React.Component {
   state = {
-    siteInfo: {
-      websiteUrl: "https://ajeetchaulagain.com"
-    },
-    loading: false
+    siteInfo: {}
   };
 
-  updateUser = loading => {
-    this.setState({ loading: loading });
-  };
-
-  // Function for conditional rendering of component in hero section
-  renderHeroComponent = () => {
-    if (this.state.loading) return <Loading />;
-    return <UserInputForm onSubmit={this.updateUser} />;
+  handleStartTest = url => {
+    console.log("APP.JS - handleStartTest:", url);
   };
 
   render() {
     return (
       <MasterLayout>
-        {console.log("App-Component - loading: ", this.state.loading)}
-        <HeroSectionWrapper>{this.renderHeroComponent()}</HeroSectionWrapper>
+        <HeroSectionWrapper>
+          <img src={speedIcon} />
+          <h2>Monitor your site speed</h2>
+          <p>
+            Enter a URL of your site to analyse its performance and get
+            optimisation recommendation.
+          </p>
+          <UserInputForm onStartTest={this.handleStartTest} />
+        </HeroSectionWrapper>
+
         <SiteInfoDisplay siteInfo={this.state.siteInfo} />
       </MasterLayout>
     );
