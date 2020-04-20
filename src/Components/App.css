@@ -1,0 +1,16 @@
+
+/* Some Global Styling */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.section{
+  width:100%;
+}
+
+.header{
+  
+}
