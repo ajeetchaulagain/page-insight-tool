@@ -58,11 +58,14 @@ class UserInputForm extends React.Component {
   };
 
   // handler for button click
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault();
-    const url = this.state.url;
-    this.props.onStartTest(url);
-    console.log("UserInputForm - url:", url);
+
+    const { data } = await axios.get(
+      "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://ajeetchaulagain.com"
+    );
+
+    this.props.onStartTest(data);
   };
 
   // handler for input change

@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 const HeaderWrapper = styled.div`
   width: 100%;
-  background-color: #230a59;
-  padding: 1rem;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
+  background-color: #fff;
+  padding: 0.2rem 1rem;
+  color: #48484a;
+  font-size: 1.1rem;
+  font-weight: 700;
   text-transform: uppercase;
 `;
 

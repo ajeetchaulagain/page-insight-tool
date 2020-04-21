@@ -11,12 +11,19 @@ import speedIcon from "../images/speed.png";
 
 // Static Assets
 import "./App.css";
+import { thisExpression } from "@babel/types";
 
 const HeroSectionWrapper = styled.div`
   padding: 3rem 1rem 5rem;
   color: #fff;
   text-align: center;
-  background-color: #734bec;
+  background: rgb(223, 28, 28);
+  background: linear-gradient(
+    77deg,
+    rgba(223, 28, 28, 1) 0%,
+    rgba(17, 28, 148, 1) 100%
+  );
+  /* background-color: #734bec; */
   line-height: 1.8;
 
   img {
@@ -35,9 +42,10 @@ class App extends React.Component {
     siteInfo: {}
   };
 
-  handleStartTest = url => {
-    console.log("APP.JS - handleStartTest:", url);
-  };
+  handleStartTest = siteResult => {
+    console.log("APP.JS - siteResult:", siteResult);
+    this.setState({ siteInfo: siteResult });
+  }; 
 
   render() {
     return (
