@@ -5,6 +5,10 @@ import "../styles/circle.css";
 const ScorePercantileWrapper = styled.div`
   border-radius: 30px;
 
+  p.title {
+    margin-bottom: 0.8rem;
+  }
+
   .score-category {
     margin-top: 1rem;
     .label {
@@ -44,7 +48,9 @@ const ScorePercantile = ({ score }) => {
 
   return (
     <ScorePercantileWrapper>
-      <h3>Performance Score for requested url: {score}</h3>
+      <p className="title">
+        <strong>Performance Score:</strong> {score}
+      </p>
       <div className="c100 p90 center">
         <span>{score}</span>
         <div className="slice">

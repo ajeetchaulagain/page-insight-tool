@@ -4,8 +4,6 @@ import styled from "styled-components";
 import ScorePercantile from "./ScorePercantile";
 import ScoreAuditDetails from "./ScoreAuditDetails";
 
-import img from "../images/speed.png";
-
 const TAG = "SiteResult";
 
 const SiteResultWrapper = styled.div`
@@ -19,7 +17,8 @@ const SiteResultContent = styled.div`
     font-size: 3rem;
     font-weight: 800;
     display: inline-block;
-    text-transform: uppercase;
+    /* text-decoration:underline; */
+    /* text-transform: uppercase; */
   }
   @media all and (min-width: 1151px) {
     width: 1151px;
@@ -33,6 +32,10 @@ const getDataForView = siteInfo => {
   const finalUrl = lighthouseResult ? lighthouseResult.finalUrl : null;
   const lighthouseAudit = lighthouseResult ? lighthouseResult.audits : null;
 
+  const screenshot = lighthouseAudit
+    ? lighthouseAudit["final-screenshot"].details.data
+    : null;
+
   const performance = lighthouseResult
     ? lighthouseResult.categories.performance
     : null;
@@ -44,7 +47,8 @@ const getDataForView = siteInfo => {
     finalUrl,
     lighthouseAudit,
     performanceScore,
-    performanceScoreAuditRef
+    performanceScoreAuditRef,
+    screenshot
   };
 };
 
@@ -52,6 +56,7 @@ const SiteResult = ({ siteInfo }) => {
   const {
     finalUrl,
     lighthouseAudit,
+    screenshot,
     performanceScore,
     performanceScoreAuditRef
   } = getDataForView(siteInfo);
@@ -60,14 +65,17 @@ const SiteResult = ({ siteInfo }) => {
   console.log(`${TAG} - lighthouseAudit: ${lighthouseAudit}`);
   console.log(`${TAG} - performanceScore: ${performanceScore}`);
   console.log(`${TAG} - performanceScoreAuditRef: ${performanceScoreAuditRef}`);
+  console.log(`${TAG} - screenshot: ${screenshot}`);
 
   return (
     <SiteResultWrapper>
       <SiteResultContent>
         <h2 className="result-title">Result</h2>
-        <p>URL Analysed: {finalUrl}</p>
+        <p>
+          <strong>URL Analysed:</strong> {finalUrl}
+        </p>
         <ScorePercantile score={performanceScore} />
-        <ScoreAuditDetails />
+        <ScoreAuditDetails screenshot={screenshot} />
       </SiteResultContent>
     </SiteResultWrapper>
   );
