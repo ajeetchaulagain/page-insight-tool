@@ -5,16 +5,13 @@ import styled from "styled-components";
 // Custom Components
 import MasterLayout from "./MasterLayout";
 import UserInputForm from "./UserInputForm";
-import SiteInfoDisplay from "./SiteInfoDisplay";
-import Loading from "./Loading";
-import speedIcon from "../images/speed.png";
+import SiteInfoDisplay from "./SiteResult";
 
 // Static Assets
-import "./App.css";
-import { thisExpression } from "@babel/types";
+import "../styles/App.css";
 
 const HeroSectionWrapper = styled.div`
-  padding: 3rem 1rem 5rem;
+  padding: 5rem 1rem 7rem;
   color: #fff;
   text-align: center;
   background: rgb(223, 28, 28);
@@ -23,8 +20,8 @@ const HeroSectionWrapper = styled.div`
     rgba(223, 28, 28, 1) 0%,
     rgba(17, 28, 148, 1) 100%
   );
-  /* background-color: #734bec; */
-  line-height: 1.8;
+
+  line-height: 1.7;
 
   img {
     width: 150px;
@@ -45,21 +42,15 @@ class App extends React.Component {
   handleStartTest = siteResult => {
     console.log("APP.JS - siteResult:", siteResult);
     this.setState({ siteInfo: siteResult });
-  }; 
+    this.setState({ loading: true });
+  };
 
   render() {
     return (
       <MasterLayout>
         <HeroSectionWrapper>
-          <img src={speedIcon} />
-          <h2>Monitor your site speed</h2>
-          <p>
-            Enter a URL of your site to analyse its performance and get
-            optimisation recommendation.
-          </p>
           <UserInputForm onStartTest={this.handleStartTest} />
         </HeroSectionWrapper>
-
         <SiteInfoDisplay siteInfo={this.state.siteInfo} />
       </MasterLayout>
     );

@@ -1,28 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 
+import ScorePercantile from "./ScorePercantile";
+import ScoreAuditDetails from "./ScoreAuditDetails";
+
 import img from "../images/speed.png";
 
-const TAG = "SiteInfoDisplay";
+const TAG = "SiteResult";
 
-const SiteInfoSectionWrapper = styled.div`
+const SiteResultWrapper = styled.div`
   background-color: white;
   padding: 2rem 2rem;
   text-align: center;
 `;
 
-const SiteInfoContent = styled.div`
+const SiteResultContent = styled.div`
+  .result-title {
+    font-size: 3rem;
+    font-weight: 800;
+    display: inline-block;
+    text-transform: uppercase;
+  }
   @media all and (min-width: 1151px) {
     width: 1151px;
     margin: 0 auto;
   }
-`;
-
-const ResultWrapper = styled.div`
-  background-color: #dcdcdc;
-  border-radius: 10px;
-  /* display:flex; */
-  /* align-items: center; */
 `;
 
 const getDataForView = siteInfo => {
@@ -46,7 +48,7 @@ const getDataForView = siteInfo => {
   };
 };
 
-const SiteInfoDisplay = ({ siteInfo }) => {
+const SiteResult = ({ siteInfo }) => {
   const {
     finalUrl,
     lighthouseAudit,
@@ -60,25 +62,15 @@ const SiteInfoDisplay = ({ siteInfo }) => {
   console.log(`${TAG} - performanceScoreAuditRef: ${performanceScoreAuditRef}`);
 
   return (
-    <SiteInfoSectionWrapper>
-      <SiteInfoContent>
-        <h3>Requested Url:{finalUrl}</h3>
-        <ResultWrapper>
-          <h3>Performance Score for requested url: {performanceScore}</h3>
-          <div className="performance-score">0.99</div>
-          <div className="performance-ref-audit">
-            <p>
-              The performance is calculated based on following audit reference
-            </p>
-            <ul>
-              <li>First Contentful pain</li>
-              <li>Content....</li>
-            </ul>
-          </div>
-        </ResultWrapper>
-      </SiteInfoContent>
-    </SiteInfoSectionWrapper>
+    <SiteResultWrapper>
+      <SiteResultContent>
+        <h2 className="result-title">Result</h2>
+        <p>URL Analysed: {finalUrl}</p>
+        <ScorePercantile score={performanceScore} />
+        <ScoreAuditDetails />
+      </SiteResultContent>
+    </SiteResultWrapper>
   );
 };
 
-export default SiteInfoDisplay;
+export default SiteResult;

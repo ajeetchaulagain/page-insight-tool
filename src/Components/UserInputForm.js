@@ -2,12 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 
+import Loading from "./Loading";
+import speedIcon from "../images/speed.png";
+
 const FormWrapper = styled.div`
   width: 100%;
   font-size: 1rem;
-  font-weight: 700;
-  margin-top: 2.5rem;
-  /* margin-top:5rem; */
+
+  form {
+    margin-top: 1.5rem;
+  }
 
   input[type="text"] {
     padding: 1rem;
@@ -54,39 +58,77 @@ const tag = "UserInputForm Component";
 class UserInputForm extends React.Component {
   state = {
     url: "",
-    placeHolderText: "Insert site URL here"
+    placeHolderText: "Insert site URL here",
+    loading: false
+  };
+
+  
+  isUrlValid = string => {
+    let regexp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
+    if (regexp.test(string)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  getUrlForRequest = url => {
+    if (!url.match(/^[a-zA-Z]+:\/\//)) {
+      url = "http://" + url;
+    }
+    return url;
   };
 
   // handler for button click
   handleSubmit = async event => {
     event.preventDefault();
+    this.setState({ loading: true });
+
+    const url = this.state.url;
+    console.log("is urlvalid:", this.isUrlValid(url));
+
+    const urlFinal = this.isUrlValid(url) ? this.getUrlForRequest(url) : null;
 
     const { data } = await axios.get(
-      "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://ajeetchaulagain.com"
+      `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${urlFinal}`
     );
 
+    this.setState({ loading: false });
+
     this.props.onStartTest(data);
+
   };
 
   // handler for input change
   handleChange = event => {
-    event.preventDefault();
     this.setState({ url: event.currentTarget.value });
   };
 
   render() {
     return (
       <FormWrapper>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            onChange={this.handleChange}
-            placeholder={this.state.placeHolderText}
-            value={this.state.websiteUrl}
-            onFocus={() => this.setState({ placeHolderText: "" })}
-          />
-          <button>Start Test</button>
-        </form>
+        {!this.state.loading ? (
+          <React.Fragment>
+            <img src={speedIcon} />
+            <h2>Monitor your site speed</h2>
+            <p>
+              Enter a URL of your site to analyse its performance and get
+              optimisation recommendation.
+            </p>
+            <form onSubmit={this.handleSubmit}>
+              <input
+                type="text"
+                onChange={this.handleChange}
+                placeholder={this.state.placeHolderText}
+                value={this.state.websiteUrl}
+                onFocus={() => this.setState({ placeHolderText: "" })}
+              />
+              <button>Start Test</button>
+            </form>
+          </React.Fragment>
+        ) : (
+          <Loading />
+        )}
       </FormWrapper>
     );
   }

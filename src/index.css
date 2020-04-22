@@ -1,6 +1,37 @@
 /* Google Web font import */
+/* Minimal CSS Reset */
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+  margin: 0;
+  padding: 0;
+  /* font-weight: normal; */
+}
+
+ol, ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* end of minimal css */
+
+
+/* Google font import */
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap");
+
 
 /* Global Styling */
 body {
@@ -11,10 +42,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "Karla", sans-serif;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+

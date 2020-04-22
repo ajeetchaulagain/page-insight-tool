@@ -5,9 +5,8 @@ const HeaderWrapper = styled.div`
   width: 100%;
   background-color: #fff;
   padding: 0.2rem 1rem;
-  color: #48484a;
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
 `;
 
