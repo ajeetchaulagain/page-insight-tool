@@ -20,9 +20,8 @@ const FormWrapper = styled.div`
     font-size: inherit;
     border: 1px solid #fff;
     background-color: transparent;
-    color: #e5e4e6;
+    color: #f8f7f9;
     font-family: inherit;
-    /* border:none; */
 
     ::placeholder {
       color: #e5e4e6;
@@ -38,16 +37,16 @@ const FormWrapper = styled.div`
     border-radius: 5px;
     margin-left: 0.3rem;
     font-weight: 700;
-    background-color: #d3e65a;
+    background-color: #86c430;
     font-size: inherit;
     font-family: inherit;
     color: #2f2f30;
     border: none;
     transition: background-color 0.5s ease;
-    /* text-transform: uppercase; */
+    text-transform: uppercase;
 
     :hover {
-      background-color: #b1c244;
+      background-color: #99d83f;
       cursor: pointer;
     }
   }
@@ -62,7 +61,6 @@ class UserInputForm extends React.Component {
     loading: false
   };
 
-  
   isUrlValid = string => {
     let regexp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
     if (regexp.test(string)) {
@@ -96,7 +94,6 @@ class UserInputForm extends React.Component {
     this.setState({ loading: false });
 
     this.props.onStartTest(data);
-
   };
 
   // handler for input change

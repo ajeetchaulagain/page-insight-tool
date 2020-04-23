@@ -2,26 +2,37 @@ import React from "react";
 import styled from "styled-components";
 
 const ScoreAuditDetailsWrapper = styled.div`
-  /* background-color: red; */
-  margin-top: 2rem;
-  /* border-top:1px solid black; */
+  display: flex;
+  margin-top: 5rem;
+  justify-content: flex-end;
 
   img {
     border: 10px double black;
+    width: 250px;
   }
 `;
 
-const ScoreAuditDetails = ({ screenshot }) => {
+const ScoreAuditDetails = ({ screenshot, auditsDetails }) => {
   return (
     <ScoreAuditDetailsWrapper>
-      <img src={screenshot} />
-      <h2>Here goes the score audit details</h2>
-      <div className="performance-ref-audit">
+      <div className="score-audit-content">
+        <h2>Performance Metrix</h2>
         <p>The performance is calculated based on following audit reference</p>
         <ul>
-          <li>First Contentful pain</li>
-          <li>Content....</li>
+          {auditsDetails &&
+            auditsDetails.map(audit => {
+              return (
+                <div>
+                  <p>Title: {audit.title}</p>
+                  <p>Title: {audit.description}</p>
+                  <p>Title: {audit.id}</p>
+                </div>
+              );
+            })}
         </ul>
+      </div>
+      <div className="audit-image-wrapper">
+        <img src={screenshot} />
       </div>
     </ScoreAuditDetailsWrapper>
   );

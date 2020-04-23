@@ -14,11 +14,19 @@ const HeroSectionWrapper = styled.div`
   padding: 5rem 1rem 7rem;
   color: #fff;
   text-align: center;
+  /* background-color: #732c02; */
   background: rgb(223, 28, 28);
   background: linear-gradient(
     77deg,
     rgba(223, 28, 28, 1) 0%,
     rgba(17, 28, 148, 1) 100%
+  );
+
+  background: rgb(30, 128, 6);
+  background: linear-gradient(
+    77deg,
+    rgba(30, 128, 6, 1) 0%,
+    rgba(7, 138, 212, 1) 100%
   );
 
   line-height: 1.7;
@@ -42,7 +50,6 @@ class App extends React.Component {
   handleStartTest = siteResult => {
     console.log("APP.JS - siteResult:", siteResult);
     this.setState({ siteInfo: siteResult });
-    this.setState({ loading: true });
   };
 
   render() {
@@ -51,7 +58,9 @@ class App extends React.Component {
         <HeroSectionWrapper>
           <UserInputForm onStartTest={this.handleStartTest} />
         </HeroSectionWrapper>
-        <SiteInfoDisplay siteInfo={this.state.siteInfo} />
+        {!(Object.keys(this.state.siteInfo).length === 0) && (
+          <SiteInfoDisplay siteInfo={this.state.siteInfo} />
+        )}
       </MasterLayout>
     );
   }

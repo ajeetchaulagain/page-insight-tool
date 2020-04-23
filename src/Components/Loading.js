@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const LoadingWrapper = styled.div`
   p {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     font-size: 1.4rem;
     font-weight: 600;
   }
