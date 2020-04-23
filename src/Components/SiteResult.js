@@ -8,7 +8,7 @@ const TAG = "SiteResult";
 
 const SiteResultWrapper = styled.div`
   background-color: white;
-  padding: 2rem 2rem;
+  padding: 3rem 2rem;
   text-align: center;
 `;
 
@@ -18,8 +18,6 @@ const SiteResultContent = styled.div`
     margin-bottom: 1rem;
     font-weight: 800;
     display: inline-block;
-    /* text-decoration:underline; */
-    /* text-transform: uppercase; */
   }
   @media all and (min-width: 1151px) {
     width: 1151px;

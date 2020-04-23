@@ -108,10 +108,7 @@ class UserInputForm extends React.Component {
           <React.Fragment>
             <img src={speedIcon} />
             <h2>Monitor your site speed</h2>
-            <p>
-              Enter a URL of your site to analyse its performance and get
-              optimisation recommendation.
-            </p>
+            <p>Enter a URL of your site to analyse the performance.</p>
             <form onSubmit={this.handleSubmit}>
               <input
                 type="text"
