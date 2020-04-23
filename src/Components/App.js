@@ -5,22 +5,17 @@ import styled from "styled-components";
 // Custom Components
 import MasterLayout from "./MasterLayout";
 import UserInputForm from "./UserInputForm";
-import SiteInfoDisplay from "./SiteResult";
 
 // Static Assets
 import "../styles/App.css";
+import SiteResult from "./SiteResult";
 
 const HeroSectionWrapper = styled.div`
   padding: 5rem 1rem 7rem;
   color: #fff;
   text-align: center;
   /* background-color: #732c02; */
-  background: rgb(223, 28, 28);
-  background: linear-gradient(
-    77deg,
-    rgba(223, 28, 28, 1) 0%,
-    rgba(17, 28, 148, 1) 100%
-  );
+  
 
   background: rgb(30, 128, 6);
   background: linear-gradient(
@@ -59,7 +54,7 @@ class App extends React.Component {
           <UserInputForm onStartTest={this.handleStartTest} />
         </HeroSectionWrapper>
         {!(Object.keys(this.state.siteInfo).length === 0) && (
-          <SiteInfoDisplay siteInfo={this.state.siteInfo} />
+          <SiteResult siteInfo={this.state.siteInfo} />
         )}
       </MasterLayout>
     );
