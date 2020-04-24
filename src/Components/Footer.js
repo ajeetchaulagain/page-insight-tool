@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+import { FaGithub, FaHeart } from "react-icons/fa";
+import GitHubButton from "react-github-btn";
+
 const FooterWrapper = styled.div`
   background-color: #383839;
   color: white;
@@ -8,10 +11,23 @@ const FooterWrapper = styled.div`
   width: 100%;
   position: relative;
 `;
-
 const FooterContent = styled.div`
   text-align: center;
   padding: 2rem;
+  p.footer-paragraph {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    li {
+      margin-left: 1rem;
+    }
+  }
 
   @media all and (min-width: 1151px) {
     width: 1151px;
@@ -23,8 +39,33 @@ const Footer = () => {
   return (
     <FooterWrapper>
       <FooterContent>
-        <p>Copyright 2020. Ajeet Chaulagain</p>
-        <p>Made with Love and is Open sources on Github</p>
+        <p className="footer-paragraph">
+          Made with &nbsp; <FaHeart style={{ color: "red" }} /> &nbsp; by Ajeet
+          and is open sourced on &nbsp; <FaGithub />
+        </p>
+        <ul>
+          <li>
+            <GitHubButton
+              href="https://github.com/ajeetchaulagain"
+              data-color-scheme="no-preference: light; light: light; dark: dark;"
+              data-size="large"
+              aria-label="Follow @ajeetchaulagain on GitHub"
+            >
+              @ajeetchaulagain
+            </GitHubButton>
+          </li>
+          <li>
+            <GitHubButton
+              href="https://github.com/ajeetchaulagain/page-insight-tool/"
+              data-color-scheme="no-preference: light; light: light; dark: dark;"
+              data-icon="octicon-eye"
+              data-size="large"
+              aria-label="Watch ajeetchaulagain/page-insight-tool on GitHub"
+            >
+              Source Code
+            </GitHubButton>
+          </li>
+        </ul>
       </FooterContent>
     </FooterWrapper>
   );

@@ -2,13 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 
+import { FaTelegramPlane } from "react-icons/fa";
+
 import Loading from "./Loading";
 import speedIcon from "../images/speed.png";
 
 const FormWrapper = styled.div`
   width: 100%;
   font-size: 1rem;
-
   form {
     margin-top: 1.5rem;
   }
@@ -33,26 +34,24 @@ const FormWrapper = styled.div`
     }
   }
   button {
-    padding: 1.1rem 3rem;
+    padding: 1.1rem 1.5rem;
     border-radius: 5px;
     margin-left: 0.3rem;
     font-weight: 700;
     background-color: #86c430;
     font-size: inherit;
     font-family: inherit;
-    color: #2f2f30;
+    color: #fff;
     border: none;
     transition: background-color 0.5s ease;
     text-transform: uppercase;
 
     :hover {
-      background-color: #99d83f;
+      background-color: #76b71a;
       cursor: pointer;
     }
   }
 `;
-
-const tag = "UserInputForm Component";
 
 class UserInputForm extends React.Component {
   state = {
@@ -92,7 +91,6 @@ class UserInputForm extends React.Component {
     );
 
     this.setState({ loading: false });
-
     this.props.onStartTest(data);
   };
 
@@ -102,22 +100,28 @@ class UserInputForm extends React.Component {
   };
 
   render() {
+    const { loading, placeHolderText, websiteUrl } = this.state;
     return (
       <FormWrapper>
-        {!this.state.loading ? (
+        {!loading ? (
           <React.Fragment>
             <img src={speedIcon} />
             <h2>Monitor your site speed</h2>
-            <p>Enter a URL of your site to analyse the performance.</p>
+            <p>
+              Enter a URL of your site to analyse the performance based on
+              Lighthouse report
+            </p>
             <form onSubmit={this.handleSubmit}>
               <input
                 type="text"
                 onChange={this.handleChange}
-                placeholder={this.state.placeHolderText}
-                value={this.state.websiteUrl}
+                placeholder={placeHolderText}
+                value={websiteUrl}
                 onFocus={() => this.setState({ placeHolderText: "" })}
               />
-              <button>Start Test</button>
+              <button>
+                Start Test <FaTelegramPlane />
+              </button>
             </form>
           </React.Fragment>
         ) : (

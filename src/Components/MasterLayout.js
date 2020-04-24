@@ -1,14 +1,13 @@
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import styled from "styled-components";
 
-// Master layer includes header and footer those are common on all pages
-const MasterLayout = props => {
+// MasterLayout includes header and footer
+const MasterLayout = ({ children }) => {
   return (
     <React.Fragment>
       <Header />
-      {props.children}
+      {children}
       <Footer />
     </React.Fragment>
   );

@@ -29,8 +29,10 @@ const ScorePercantileWrapper = styled.div`
 `;
 
 const ScorePercantile = ({ score }) => {
-  score = score * 100;
+  //Score value converted to integer percentage
+  score = Math.ceil(score * 100);
 
+  // To generate performance label - slow, average, fast
   const generateLabel = (label, color) => {
     return (
       <div className="label">
@@ -40,6 +42,7 @@ const ScorePercantile = ({ score }) => {
     );
   };
 
+  // Returns color for the score
   const getColor = () => {
     if (score >= 0 && score <= 49) return "red";
     if (score >= 50 && score < 90) return "orange";
@@ -51,7 +54,7 @@ const ScorePercantile = ({ score }) => {
       <p className="title">
         <strong>Performance Score:</strong> {score}
       </p>
-      <div className="c100 p90 center">
+      <div className={`c100 p${score} center`}>
         <span>{score}</span>
         <div className="slice">
           <div className="bar" style={{ borderColor: `${getColor()}` }}></div>
