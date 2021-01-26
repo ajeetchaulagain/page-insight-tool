@@ -1,9 +1,15 @@
-# Web Insight Tool
+# Page Insight Tool
 
-Simple web tool to measure the performance of your web application and recommend the optimization tips
+Page Insight is a minimal project created to demonstrate some of the core concepts of React. This project might be handy for those developer who are learning React. Some of the concepts demonstrated by this project includes:
 
-## Documentation
+- Working with Stateful class component and maintaining state
+- Using CSS in JS (styled-components) in a project to avoid global scoping of CSS
+- Creating reusable functional components
+- Conditional Rendering in different ways (Inline conditional rendering, conditional rendering through functions)
+- Using axios as HTTP client to make API request
+- Working with Google PageSpeed Insight API data
+- Client Side Error handling
 
-Documentation coming soon .
+Note: This application sends the request to Google's Page Speed Insigt API for analysing the site performance. You can view more about the structure of data at Google's API Referece docs.
 
-Node LTS 12.16.2 is used in development env
+
